@@ -1,6 +1,7 @@
 package com.example.stefanini.datasource.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -14,14 +15,18 @@ public class Person extends DateAudit implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "serial")
     private Long id;
-
     private String name;
+    @Column(unique = true)
     private String cpf;
     private LocalDate birthday;
+    @Column(nullable = true)
     private Character gender;
+    @Email
+    @Column(nullable = true)
     private String email;
+    @Column(nullable = true)
     private String nationality;
-    @Column(name = "place_of_birth")
+    @Column(name = "place_of_birth", nullable = true)
     private String placeOfBirth;
 
     public Person() {
